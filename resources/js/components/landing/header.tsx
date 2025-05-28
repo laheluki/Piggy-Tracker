@@ -40,7 +40,7 @@ export default function Header() {
                     className="group flex h-16 w-14 flex-col items-center gap-1 rounded-b-3xl bg-secondary/30 px-[6px] pt-2 text-2xl transition-colors hover:bg-primary/25 dark:bg-card dark:hover:bg-border/70 sm:size-32 sm:rounded-b-4xl sm:pt-4 sm:text-3xl lg:w-36 lg:text-4xl"
                 >
                     <img
-                        src={Logo}
+                        src="/assets/icons/logo.png"
                         className="w-[1.5em] group-hover:animate-bounce"
                     />
                     <span className=" -tracking-widest max-sm:sr-only text-center">

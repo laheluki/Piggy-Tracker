@@ -89,6 +89,7 @@ export default function CategoryPicker<TFieldValues extends FieldValues>({
             const res = await api.get(`/api/categories`, {
                 params: {
                     type, // secara default, ambil kategori berdasarkan type
+                    limit: 5,
                     ...(debouncedSearch ? { search: debouncedSearch } : {}),
                     // jika ada pencarian, tambahkan query search
                 },

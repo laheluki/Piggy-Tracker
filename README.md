@@ -136,3 +136,14 @@ Kalau semua langkah di atas sudah kamu ikuti...
 <br>
 
 > 💩 Maafin ya kalau masih ada bug, namanya juga MVP — _Minimal Versi Paling niat_ 💩
+
+**DEMO :**
+
+<img src="./docs/landing.png" alt="Piggy Tracker Landing" />
+<img src="./docs/login.png" alt="Piggy Tracker Login" />
+<img src="./docs/register.png" alt="Piggy Tracker Register" />
+<img src="./docs/register.png" alt="Piggy Tracker Register" />
+<img src="./docs/home.png" alt="Piggy Tracker Home" />
+<img src="./docs/income.png" alt="Piggy Tracker Income" />
+<img src="./docs/expense.png" alt="Piggy Tracker Expense" />
+<img src="./docs/report.png" alt="Piggy Tracker Report" />

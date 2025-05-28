@@ -1,15 +1,9 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Picker, { Theme } from "emoji-picker-react";
 import { FaRegSquarePlus } from "react-icons/fa6";
 import { MdInsertEmoticon } from "react-icons/md";
 
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -30,6 +24,12 @@ import { useTheme } from "@/components/theme-provider";
 import { toast } from "sonner";
 import { useState } from "react";
 import api from "@/lib/axios";
+import {
+    EmojiPicker,
+    EmojiPickerContent,
+    EmojiPickerFooter,
+    EmojiPickerSearch,
+} from "@/components/ui/emoji-picker";
 
 interface CreateCategoryModalProps {
     type: "income" | "expense";
@@ -62,6 +62,7 @@ export default function CreateCategoryDialog({
 }: CreateCategoryModalProps) {
     const { theme } = useTheme();
     const [open, setOpen] = useState(false);
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
     // Schema validasi menggunakan zod
     const categorySchema = z.object({
@@ -113,7 +114,7 @@ export default function CreateCategoryDialog({
                     Buat Kategori
                 </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="font-display">
+            <AlertDialogContent className="font-display  ">
                 <AlertDialogHeader>
                     <AlertDialogTitle className="text-xl capitalize">
                         Buat Kategori Baru
@@ -123,7 +124,7 @@ export default function CreateCategoryDialog({
                         pemasukan atau pengeluaran.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
-                <div>
+                <div className="max-h-[90vh] overflow-y-auto overscroll-contain">
                     <form className="grid gap-4">
                         <div>
                             <InputLabel
@@ -146,55 +147,49 @@ export default function CreateCategoryDialog({
                             <Label htmlFor={"icon"} className="">
                                 Ikon
                             </Label>
-                            <Popover>
-                                <PopoverTrigger asChild>
-                                    <Button
-                                        id="icon"
-                                        variant="outline"
-                                        className="w-full h-[150px]"
-                                    >
-                                        {watch("emoji") ? (
-                                            <div className="flex flex-col items-center gap-2">
-                                                <span
-                                                    className="text-4xl"
-                                                    role="img"
-                                                >
-                                                    {watch("emoji")}
-                                                </span>
-                                                <p className="text-xs text-muted-foreground">
-                                                    Ubah emoji kategori
-                                                </p>
-                                            </div>
-                                        ) : (
-                                            <div className="flex flex-col items-center gap-2">
-                                                <MdInsertEmoticon className="size-10" />
-                                                <p className="text-xs text-muted-foreground">
-                                                    Pilih ikon untuk kategori
-                                                    ini
-                                                </p>
-                                            </div>
-                                        )}
-                                    </Button>
-                                </PopoverTrigger>
+                            <Button
+                                id="icon"
+                                variant="outline"
+                                className="w-full h-[150px]"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowEmojiPicker(true);
+                                }}
+                            >
+                                {watch("emoji") ? (
+                                    <div className="flex flex-col items-center gap-2">
+                                        <span className="text-4xl" role="img">
+                                            {watch("emoji")}
+                                        </span>
+                                        <p className="text-xs text-muted-foreground">
+                                            Ubah emoji kategori
+                                        </p>
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col items-center gap-2">
+                                        <MdInsertEmoticon className="size-10" />
+                                        <p className="text-xs text-muted-foreground">
+                                            Pilih ikon untuk kategori ini
+                                        </p>
+                                    </div>
+                                )}
+                            </Button>
 
-                                <PopoverContent className="w-auto p-0">
-                                    <Picker
-                                        theme={
-                                            theme === "dark"
-                                                ? Theme.DARK
-                                                : Theme.LIGHT
-                                        }
-                                        onEmojiClick={(emoji) => {
-                                            setValue("emoji", emoji.emoji);
-                                            register("emoji").onChange({
-                                                target: {
-                                                    value: emoji.emoji,
-                                                },
-                                            });
+                            {showEmojiPicker && (
+                                <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[9999] bg-white border rounded-md shadow-md w-[320px] max-h-[350px] overflow-y-auto touch-auto overscroll-contain scroll-touch">
+                                    <EmojiPicker
+                                        className="h-full"
+                                        onEmojiSelect={({ emoji }) => {
+                                            setShowEmojiPicker(false);
+                                            setValue("emoji", emoji);
                                         }}
-                                    />
-                                </PopoverContent>
-                            </Popover>
+                                    >
+                                        <EmojiPickerSearch />
+                                        <EmojiPickerContent />
+                                        <EmojiPickerFooter />
+                                    </EmojiPicker>
+                                </div>
+                            )}
 
                             {errors.emoji && (
                                 <p className="text-red-500 text-xs mt-1 ml-2">

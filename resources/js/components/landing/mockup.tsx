@@ -23,8 +23,12 @@ export default function Mockup() {
 
                 {/* Mobile Mockup floating on top */}
 
-                <div className="absolute  -bottom-[35%] -right-[38%] z-10 flex w-full justify-end">
-                    <img src={MockupMobile} alt="Mobile Mockup" />
+                <div className="absolute  -bottom-[20%] md:-bottom-[10%] z-10 flex w-full justify-end">
+                    <img
+                        src={MockupMobile}
+                        alt="Mobile Mockup"
+                        className="w-[150px] md:w-[350px] lg:w-[400px] object-cover rounded-lg md:-bottom-[30%] md:-right-[30%] lg:-bottom-[25%] lg:-right-[25%] max-w-full max-h-full md:max-w-none md:max-h-none"
+                    />
                 </div>
             </AnimatedMockup>
         </section>

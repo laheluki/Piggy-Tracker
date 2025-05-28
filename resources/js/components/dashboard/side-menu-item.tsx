@@ -5,6 +5,7 @@ import * as FcIcons from "react-icons/fc";
 import { Button } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
+import { useMobileMenuSheet } from "@/store/use-mobile-menu-sheet";
 
 type SideMenuItemProps = {
     label: string;
@@ -21,6 +22,7 @@ export default function SideMenuItem({
 }: SideMenuItemProps) {
     const { pathname } = useLocation();
     const isActive = pathname === href;
+    const setIsOpen = useMobileMenuSheet((state) => state.setIsOpen);
 
     return (
         <li>
@@ -36,6 +38,7 @@ export default function SideMenuItem({
                     to={href}
                     title={label}
                     {...(hideLabel && { "aria-label": label })}
+                    onClick={() => setIsOpen(false)}
                 >
                     <span className="relative block size-10">
                         {React.createElement(

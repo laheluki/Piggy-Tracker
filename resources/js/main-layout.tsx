@@ -18,10 +18,19 @@ export default function MainLayout() {
             <div className="flex flex-grow flex-col px-0 sm:flex-row">
                 <header className="top-0 z-10 max-sm:sticky sm:w-20 lg:w-64">
                     <div className="flex items-center justify-between border-b-2 border-primary-depth bg-primary p-2 text-primary-foreground/80 sm:hidden">
-                        {/* <div className="w-full max-w-[300px]">{userProgress}</div> */}
                         <MobileSheet>
                             <SideMenu />
                         </MobileSheet>
+                        <a
+                            href="/"
+                            title="Piggy Tracker"
+                            className=" flex h-16 w-14 items-center"
+                        >
+                            <img
+                                src="/assets/icons/logo.png"
+                                className="size-11"
+                            />
+                        </a>
                     </div>
                     <div className="fixed inset-y-0 w-[inherit] border-r-2 max-sm:hidden">
                         <SideMenu />

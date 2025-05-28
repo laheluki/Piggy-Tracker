@@ -12,6 +12,10 @@ body {
     overflow-x: hidden;
 }
 
+body[aria-hidden="true"] {
+    overflow: auto !important;
+}
+
 /*  scrollbar */
 ::-webkit-scrollbar {
     width: 8px;

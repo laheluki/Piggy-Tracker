@@ -18,6 +18,7 @@ import CategoryPicker from "@/components/transaction/category-picker";
 import ButtonSubmit from "@/components/modal/button-submit";
 
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 const transactionSchema = z.object({
     description: z.string().min(1, "Deskripsi transaksi tidak boleh kosong"),
@@ -53,6 +54,7 @@ export default function TransactionForm({
         mode: "onChange",
         defaultValues,
     });
+    const [isCreateCategoryOpen, setIsCreateCategoryOpen] = useState(false);
 
     const descPlac = {
         income: "Gaji bulan ini, bonus, dll",
@@ -112,9 +114,9 @@ export default function TransactionForm({
                 </div>
 
                 {/* Category & Date */}
-                <div className="flex flex-col sm:flex-row w-full justify-between gap-2">
+                <div className="flex flex-col sm:flex-row w-full justify-between gap-4">
                     {/* Category */}
-                    <div className="grid gap-2">
+                    <div className="grid gap-4">
                         <Label htmlFor="category">🗂️ Kategori</Label>
                         <CategoryPicker
                             id="category"
@@ -125,7 +127,7 @@ export default function TransactionForm({
                     </div>
 
                     {/* Date */}
-                    <div className="grid gap-2">
+                    <div className="grid gap-4">
                         <Label htmlFor="date">📅 Tanggal</Label>
                         <Controller
                             control={control}

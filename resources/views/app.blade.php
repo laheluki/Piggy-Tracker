@@ -14,7 +14,6 @@
         <meta property="og:title" content="Piggy Tracker - Catat Keuanganmu Dengan Mudah"/>
         <meta property="og:url" content="{{ config('app.url') }}"/>
         <meta property="og:type" content="website"/>
-
         <meta property="og:image" content="{{ config('app.url') }}/assets/icons/logo.png" />
 
         <meta itemprop="name" content="Piggy Tracker - Catat Keuanganmu Dengan Mudah"/>
@@ -24,7 +23,7 @@
         <meta name="twitter:card" content="summary"/>
         <meta name="description" content="Lacak keuanganmu" />
         <!-- styles -->
-        @vite(['resources/css/app.css', 'resources/js/app.tsx']);
+        @vite(['resources/css/app.css', 'resources/js/app.tsx'])
     </head>
     <body class="antialiased">
         <div id="root"></div>

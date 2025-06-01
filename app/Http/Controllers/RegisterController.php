@@ -25,7 +25,7 @@ class RegisterController extends Controller
         // rules validasi untuk registrasi user
         $rules = [
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:8'
         ];
 

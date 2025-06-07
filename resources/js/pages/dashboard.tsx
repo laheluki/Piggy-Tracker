@@ -145,7 +145,14 @@ export default function Dashboard() {
                 </div>
 
                 {/* chart income & expense by date */}
-                <div className="flex  gap-3 mt-3">
+                <div
+                    className={cn(
+                        Number(data?.summary.balance) === 0
+                            ? "blur-sm cursor-not-allowed pointer-events-none select-none"
+                            : "",
+                        "flex  gap-3 mt-3"
+                    )}
+                >
                     <ChartByMonth
                         title="Pergerakan Duit tiap Bulan"
                         desc={`${MONTH["january"]} - ${MONTH["december"]} ${

@@ -181,7 +181,10 @@ export default function CreateCategoryDialog({
                                         className="h-full"
                                         onEmojiSelect={({ emoji }) => {
                                             setShowEmojiPicker(false);
-                                            setValue("emoji", emoji);
+                                            setValue("emoji", emoji, {
+                                                shouldValidate: true,
+                                                shouldDirty: true,
+                                            });
                                         }}
                                     >
                                         <EmojiPickerSearch />

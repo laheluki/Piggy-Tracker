@@ -79,7 +79,7 @@ export default function FormRegister() {
     // jika register gagal, maka akan ditampilkan pesan error
     const onSubmit = async (data: RegisterFormData) => {
         try {
-            const response = await api.post("/api/auth/login", {
+            const response = await api.post("/api/auth/register", {
                 name: data.fullname,
                 email: data.email,
                 password: data.password,
@@ -90,7 +90,6 @@ export default function FormRegister() {
                 setModalOpen(false);
                 setView("sign-in");
                 setModalOpen(true);
-                setIsBlur(false);
             }
         } catch (error: any) {
             const message = error.response.data.message;
